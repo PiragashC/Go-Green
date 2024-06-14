@@ -17,11 +17,16 @@ const userSchema = new Schema(
     },
     school: {
       type: String,
-      required: [true, "School name must be provided"]
+      required: function() {
+        return this.role === 'User';
+      }
     },
     grade: {
-      type: String,
-      required: [true, "Grade must be provided"]
+      type: Number,
+      min: 1,
+      required: function() {
+        return this.role === 'User';
+      }
     },
     role: {
       type: String,

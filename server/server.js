@@ -8,8 +8,8 @@ const http = require('http');
 
 const authRouter = require("./routes/authRouter");
 const userRouter = require("./routes/userRouter");
-// const commonRoleRouter = require("./routes/commonRoleRouter");
-// const adminRouter = require("./routes/adminRouter");
+const commonRoleRouter = require("./routes/commonRoleRouter");
+const adminRouter = require("./routes/adminRouter");
 
 // Load environment variables from .env file
 dotenv.config();
@@ -33,8 +33,8 @@ app.use(express.urlencoded({ extended: true })); // URL encoded data parsing
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
-// app.use("/api/common-role", commonRoleRouter);
-// app.use("/api/admin", adminRouter);
+app.use("/api/common-role", commonRoleRouter);
+app.use("/api/admin", adminRouter);
 
 // Create HTTP server
 const server = http.createServer(app);

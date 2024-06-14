@@ -19,6 +19,7 @@ const plantDetailSchema = new Schema(
     {
       year: {
         type: Number,
+        min: 2000,
         required: [true, "Year must be provided"],
       },
       progressAndMaintenance: {

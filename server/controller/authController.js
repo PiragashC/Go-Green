@@ -37,15 +37,15 @@ const checkUserAlreadyRegistered = async (req, res) => {
   
 
 /* register */
-const register = async (email, name, password, role) => {
+const register = async (email, name, password, role, school, grade) => {
   try{
     // Check for required fields
-    if (!email || !name || !password || !role || !school || !grade) {
+    if (!email || !name || !password || !role || (role === "User" && (!school || !grade))) {
       return {
           error: "Please fill all required fields!",
           status: 400
       };
-    }
+  }  
 
     // Validate email and phone number
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

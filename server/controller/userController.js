@@ -81,8 +81,103 @@ const uploadPlantProgressForm = async (req, res) => {
     }
 };
 
+/* edit uploaded plant progress document */
+const updatePlantProgressAndMaintenanceForm = async (req, res) => {
+    try {
+        const { plantName, issueDate, year, progressAndMaintenance } = req.body;
+        const { formId } = req.params;
+        const { role, id } = req.user;
+
+        if(role !== "User") {
+            return res.status(403).json({ error: "User is not authorized to update Plant Progress & Maintenance Form" }); 
+        };
+
+        if (!formId) {
+            return res.status(400).json({ error: "Plant Progress & Maintenance Form Id is required." });
+        }
+
+        const formToBeModified = await PlantProgressForm.findById(formId);
+
+        if (!formToBeModified) {
+            return res.status(404).json({ error: "Plant Progress & Maintenance Form not found" });
+        }
+
+        let photoUrl = formToBeModified.progressAndMaintenance.photoUrl;
+        if (req.file) {
+            const b64 = Buffer.from(req.file.buffer).toString("base64");
+            const dataURI = `data:${req.file.mimetype};base64,${b64}`;
+            const cldRes = await handleUpload(dataURI);
+            photoUrl = cldRes.secure_url;
+        }
+
+        const updatedFields = {
+            plantDetail: {},
+            progressAndMaintenance: {}
+        };
+
+        if (plantName || issueDate) {
+            updatedFields.plantDetail.plantName = plantName || formToBeModified.plantDetail.plantName;
+            updatedFields.plantDetail.issueDate = issueDate || formToBeModified.plantDetail.issueDate;
+        }
+
+        if (year || progressAndMaintenance || req.file) {
+            updatedFields.progressAndMaintenance.year = year || formToBeModified.progressAndMaintenance.year;
+            updatedFields.progressAndMaintenance.progressAndMaintenance = progressAndMaintenance || formToBeModified.progressAndMaintenance.progressAndMaintenance;
+            updatedFields.progressAndMaintenance.photoUrl = photoUrl;
+        }
+
+        const updatedForm = await PlantProgressForm.findOneAndUpdate(
+            { _id: formId, userId: id},
+            { $set: updatedFields },
+            { new: true }
+        );
+
+        if (!updatedForm) {
+            return res.status(404).json({ error: "Error in updating Plant Progress & Maintenance Form" });
+        }
+
+        return res.status(200).json({
+            message: 'Plant Progress & Maintenance Form updated successfully!',
+            form: updatedForm.toObject()
+        });
+
+    } catch (error) {
+        console.error(error); // Log the error to console for debugging
+        return res.status(500).json({ error: "Internal server error" });
+    }
+};
+
+/* delete the uploaded plant progress form */
+const deleteProgressForm = async (req, res) => {
+    try {
+        const { formId } = req.params;
+        const { role, id } = req.user;
+
+        if (!formId) {
+            return res.status(400).json({ error: "Plant Progress & Maintenance Form Id is required." });
+        }
+
+        if (role !== "User") {
+            return res.status(403).json({ error: "User is not authorized to delete Plant Progress & Maintenance Form" });
+        }
+
+        const deletionResult = await PlantProgressForm.deleteOne({ _id: formId, userId: id });
+
+        if (deletionResult.deletedCount === 0) {
+            return res.status(404).json({ error: "Plant Progress & Maintenance Form not found" });
+        }
+
+        res.status(200).json({ message: "Plant Progress & Maintenance Form deleted successfully" });
+    } catch (error) {
+        console.error(error); // Log the error to console for debugging
+        return res.status(500).json({ error: "Internal server error" });
+    }
+};
+
 module.exports = {
-    uploadPlantProgressForm
+    uploadPlantProgressForm,
+    updatePlantProgressAndMaintenanceForm,
+    deleteProgressForm
 };
 
 
