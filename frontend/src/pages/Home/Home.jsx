@@ -8,6 +8,8 @@ import { Calendar } from 'primereact/calendar';
 import { FileUpload } from 'primereact/fileupload';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
+import { InputTextarea } from "primereact/inputtextarea";
+import { InputMask } from "primereact/inputmask";
 
 const Home = () => {
     const typedElement = useRef(null);
@@ -15,12 +17,30 @@ const Home = () => {
     const [date, setDate] = useState(null);
     const [selectedPlantCondition, setSelectedPlantCondition] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [showError, setshowError] = useState(false);
+    
+    const [contactLoading, setContactLoading] = useState(false);
+    const [showContactError, setshowContactError] = useState(false);
+    const [message, setMessage] = useState('');
 
-    const load = () => {
+
+    const submitForm = () => {
         setLoading(true);
+        setshowError(true);
 
         setTimeout(() => {
             setLoading(false);
+            setshowError(false);
+        }, 2000);
+    };
+
+    const sendMessage = () => {
+        setContactLoading(true);
+        setshowContactError(true);
+
+        setTimeout(() => {
+            setContactLoading(false);
+            setshowContactError(false);
         }, 2000);
     };
 
@@ -73,10 +93,24 @@ const Home = () => {
 
                 <div className="container-md">
                     <div className="row">
-                        <div className="col-12 col-lg-7">
+                        <div className="col-12 col-lg-7 my-auto">
                             <h2 className='hero-title animate__animated animate__fadeInUp' ref={typedElement}></h2>
                             <h3 className='hero-sub-title animate__animated animate__fadeInUp'>Be a Part of the Change - Every Action Counts</h3>
                             <p className='hero-para animate__animated animate__fadeIn animate__slow'>Welcome to Go Green, a community dedicated to making our world a better, greener place. By joining us, you can contribute to meaningful environmental projects, connect with like-minded individuals, and take actionable steps towards sustainability. Sign up today to create an account, log in, and fill out a simple form to start making a difference. Together, we can turn the tide and create a healthier planet for future generations.</p>
+
+                            {/* <div className="row mt-4">
+                                <div className="col-12 col-md-4">
+                                    <article className='hero-card'></article>
+                                </div>
+
+                                <div className="col-12 col-md-4">
+                                    <article className='hero-card'></article>
+                                </div>
+
+                                <div className="col-12 col-md-4">
+                                    <article className='hero-card'></article>
+                                </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -186,6 +220,8 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+                <img src="assets/images/leafs/leaf (14).svg" className='section-leaf-dec-img leaf-1' alt="" />
+                <img src="assets/images/leafs/leaf (18).svg" className='section-leaf-dec-img leaf-2' alt="" />
             </section>
 
             <section className='section-padding overflow-hidden home-about-section' id='about-us'>
@@ -241,117 +277,246 @@ const Home = () => {
             </section>
 
             <section className='section-padding overflow-hidden' id='contribute'>
+                <img src="assets/images/leafs/leaf (4).svg" className='section-leaf-dec-img leaf-1' alt="" />
+                <img src="assets/images/leafs/leaf (11).svg" className='section-leaf-dec-img leaf-2' alt="" />
                 <div className="container-md">
                     <h4 className="section-heading center-heading" data-aos="fade-down">Make Your Contribution</h4>
                     <p className='section-para text-center' data-aos="fade-up">
                         Your contribution plays a vital role in our mission to create a greener planet. By providing details about your efforts, you help us track the impact of our community initiatives and inspire others to join the cause. Please fill out the form below to share your progress and support the Go Green movement.
                     </p>
 
-                    <div className="contribute-form-area">
-                        <h3 className='form-head'>Enter the details below</h3>
-                        <div className="contribute-form-sub-area">
-                            <h6 className='contribute-form--title'>Beneficiary Details</h6>
-                            <div className="row mt-4">
-                                <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="con-form-group mb-4 mb-md-0">
-                                        <label htmlFor="name" className='con-form-label is-required'>Name</label>
-                                        <InputText id="name" className='con-form-input'
-                                            placeholder='Enter your name...' />
-                                        <small className='con-form-message'>This field is required</small>
+                    <div className="contribute-form-area" data-aos="fade-up">
+                        <form action="">
+                            <h3 className='form-head'>Enter the details below</h3>
+
+                            <div className="contribute-form-sub-area">
+                                <h6 className='contribute-form--title'>Beneficiary Details</h6>
+                                <div className="row mt-4">
+                                    <div className="col-12 col-md-6 col-lg-4">
+                                        <div className="con-form-group mb-4 mb-md-0">
+                                            <label htmlFor="name" className='con-form-label is-required'>Name</label>
+                                            <InputText id="name" className='con-form-input'
+                                                placeholder='Enter your name...' />
+
+                                            {showError &&
+                                                <small className='con-form-message'>This field is required</small>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="con-form-group mb-4 mb-lg-0">
-                                        <label htmlFor="school_name" className='con-form-label is-required'>School Name</label>
-                                        <InputText id="school_name" className='con-form-input'
-                                            placeholder='Enter your school name...' />
-                                        <small className='con-form-message'>This field is required</small>
+                                    <div className="col-12 col-md-6 col-lg-4">
+                                        <div className="con-form-group mb-4 mb-lg-0">
+                                            <label htmlFor="school_name" className='con-form-label is-required'>School Name</label>
+                                            <InputText id="school_name" className='con-form-input'
+                                                placeholder='Enter your school name...' />
+
+                                            {showError &&
+                                                <small className='con-form-message'>This field is required</small>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="con-form-group">
-                                        <label htmlFor="grade" className='con-form-label is-required'>Grade</label>
-                                        <InputText id="grade" className='con-form-input'
-                                            placeholder='Enter your grade...' />
-                                        <small className='con-form-message'>This field is required</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    <div className="col-12 col-md-6 col-lg-4">
+                                        <div className="con-form-group">
+                                            <label htmlFor="grade" className='con-form-label is-required'>Grade</label>
+                                            <InputText id="grade" className='con-form-input'
+                                                placeholder='Enter your grade...' />
 
-                        <div className="contribute-form-sub-area">
-                            <h6 className='contribute-form--title'>Plant Details</h6>
-                            <div className="row mt-4">
-                                <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="con-form-group mb-4 mb-md-0">
-                                        <label htmlFor="plant_name" className='con-form-label is-required'>Plant Name</label>
-                                        <InputText id="plant_name" className='con-form-input'
-                                            placeholder='Enter the plant name...' />
-                                        <small className='con-form-message'>This field is required</small>
-                                    </div>
-                                </div>
-
-                                <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="con-form-group mb-4 mb-lg-0">
-                                        <label htmlFor="issued_date" className='con-form-label is-required'>Issued Date</label>
-                                        <Calendar id="issued_date" value={issuedDate} className='con-form-date-input' onChange={(e) => setIssuedDate(e.value)} dateFormat="dd/mm/yy"
-                                            placeholder='DD/MM/YYYY' />
-                                        <small className='con-form-message'>This field is required</small>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div className="contribute-form-sub-area">
-                            <h6 className='contribute-form--title'>Progress & Maintenance</h6>
-                            <div className="row mt-4">
-                                <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="con-form-group mb-4 mb-lg-0">
-                                        <label htmlFor="issued_date" className='con-form-label is-required'>Date</label>
-                                        <Calendar id="issued_date" value={date} className='con-form-date-input' onChange={(e) => setDate(e.value)} dateFormat="dd/mm/yy"
-                                            placeholder='DD/MM/YYYY' />
-                                        <small className='con-form-message'>This field is required</small>
-                                    </div>
-                                </div>
-
-                                <div className="col-12 col-md-6 col-lg-8">
-                                    <div className="con-form-group mb-4">
-                                        <label htmlFor="plant_name" className='con-form-label is-required'>Progress and Maintenance</label>
-                                        <InputText id="plant_name" className='con-form-input'
-                                            placeholder='Enter the Progress and Maintenance...' />
-                                        <small className='con-form-message'>This field is required</small>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <div className="con-form-group mb-4">
-                                        <label htmlFor="plant_name" className='con-form-label is-required'>Attach Photo</label>
-                                        <FileUpload name="demo[]" url={'/api/upload'} accept="image/*" mode='advanced' maxFileSize={1000000} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} />
-                                        <small className='con-form-info-message'>Max file size : 1 MB</small>
-                                        <small className='con-form-message'>This field is required</small>
-                                    </div>
-                                </div>
-
-                                <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="con-form-group">
-                                        <label htmlFor="plant_name" className='con-form-label is-required'>Plant Condition</label>
-                                        <Dropdown value={selectedPlantCondition} onChange={(e) => setSelectedPlantCondition(e.value)} options={plant_conditions} optionLabel="name"
-                                            placeholder="Select the plant condition" className="w-full w-100" />
-                                        <small className='con-form-message'>This field is required</small>
+                                            {showError &&
+                                                <small className='con-form-message'>This field is required</small>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                            <div className="contribute-form-sub-area">
+                                <h6 className='contribute-form--title'>Plant Details</h6>
+                                <div className="row mt-4">
+                                    <div className="col-12 col-md-6 col-lg-4">
+                                        <div className="con-form-group mb-4 mb-md-0">
+                                            <label htmlFor="plant_name" className='con-form-label is-required'>Plant Name</label>
+                                            <InputText id="plant_name" className='con-form-input'
+                                                placeholder='Enter the plant name...' />
+
+                                            {showError &&
+                                                <small className='con-form-message'>This field is required</small>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div className="col-12 col-md-6 col-lg-4">
+                                        <div className="con-form-group mb-4 mb-lg-0">
+                                            <label htmlFor="issued_date" className='con-form-label is-required'>Issued Date</label>
+                                            <Calendar id="issued_date" value={issuedDate} className='con-form-date-input' onChange={(e) => setIssuedDate(e.value)} dateFormat="dd/mm/yy"
+                                                placeholder='DD/MM/YYYY' />
+
+                                            {showError &&
+                                                <small className='con-form-message'>This field is required</small>
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div className="contribute-form-sub-area">
+                                <h6 className='contribute-form--title'>Progress & Maintenance</h6>
+                                <div className="row mt-4">
+                                    <div className="col-12 col-md-6 col-lg-4">
+                                        <div className="con-form-group mb-4 mb-lg-0">
+                                            <label htmlFor="issued_date" className='con-form-label is-required'>Date</label>
+                                            <Calendar id="issued_date" value={date} className='con-form-date-input' onChange={(e) => setDate(e.value)} dateFormat="dd/mm/yy"
+                                                placeholder='DD/MM/YYYY' />
+
+                                            {showError &&
+                                                <small className='con-form-message'>This field is required</small>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div className="col-12 col-md-6 col-lg-8">
+                                        <div className="con-form-group mb-4">
+                                            <label htmlFor="plant_name" className='con-form-label is-required'>Progress and Maintenance</label>
+                                            <InputText id="plant_name" className='con-form-input'
+                                                placeholder='Enter the Progress and Maintenance...' />
+
+                                            {showError &&
+                                                <small className='con-form-message'>This field is required</small>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div className="col-12">
+                                        <div className="con-form-group mb-4">
+                                            <label htmlFor="plant_name" className='con-form-label is-required'>Attach Photo</label>
+                                            <FileUpload name="demo[]" url={'/api/upload'} accept="image/*" mode='advanced' maxFileSize={1000000} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} />
+                                            <small className='con-form-info-message'>Max file size : 1 MB</small>
+
+                                            {showError &&
+                                                <small className='con-form-message'>This field is required</small>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div className="col-12 col-md-6 col-lg-4">
+                                        <div className="con-form-group">
+                                            <label htmlFor="plant_name" className='con-form-label is-required'>Plant Condition</label>
+                                            <Dropdown value={selectedPlantCondition} onChange={(e) => setSelectedPlantCondition(e.value)} options={plant_conditions} optionLabel="name"
+                                                placeholder="Select the plant condition" className="w-full w-100" />
+
+                                            {showError &&
+                                                <small className='con-form-message'>This field is required</small>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-12 text-end">
+                                    <Button label="Submit" icon="pi pi-check" loading={loading} onClick={submitForm} className='ps-5 pe-5' />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </section>
+
+            <section className='overflow-hidden' id='contact'>
+                <div className="container-md">
+                    <div className="contact-container">
                         <div className="row">
-                            <div className="col-12 text-end">
-                                <Button label="Submit" icon="pi pi-check" loading={loading} onClick={load} className='ps-5 pe-5' />
+                            <div className="col-12 col-lg-5">
+                                <h4 className="section-heading text-white" data-aos="fade-down">Get in Touch with Us</h4>
+                                <p className='section-para text-light-gray' data-aos="fade-up">
+                                    Have questions, suggestions, or want to learn more about how you can get involved with Go Green? We’re here to help! Whether you’re interested in our projects, need assistance, or have ideas to share, we’d love to hear from you. Reach out to us using the contact form below, and one of our team members will respond as soon as possible. Your feedback and participation are crucial to our mission, and we look forward to connecting with you.
+                                </p>
+
+                                <div className="contact-links-section">
+                                    <div className="contact-link-area mb-4" data-aos="fade-up">
+                                        <div className="contact-link-icon-area">
+                                            <i className='bi bi-envelope-fill'></i>
+                                        </div>
+                                        <a href="mailto:info@gogreen.lk" className='contact-link'>
+                                            info@gogreen.lk
+                                        </a>
+                                    </div>
+
+                                    <div className="contact-link-area" data-aos="fade-up">
+                                        <div className="contact-link-icon-area">
+                                            <i class="bi bi-telephone-fill"></i>
+                                        </div>
+                                        <a href="tel:0000000000" className='contact-link'>
+                                            000-000-0000
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-12 col-lg-7">
+                                <div className="contact-form-section" data-aos="fade">
+                                    <form action="">
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <div className="con-form-group mb-4">
+                                                    <label htmlFor="fullName" className='con-form-label dark is-required'>Full Name</label>
+                                                    <InputText id="fullName" className='con-form-input dark'
+                                                        placeholder='Enter your full name...' />
+
+                                                    {showContactError &&
+                                                        <small className='con-form-message dark'>This field is required</small>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12 col-md-6">
+                                                <div className="con-form-group mb-4">
+                                                    <label htmlFor="email" className='con-form-label dark is-required'>Email</label>
+                                                    <InputText id="email" type='email' className='con-form-input dark'
+                                                        placeholder='Enter your email address...' />
+
+                                                    {showContactError &&
+                                                        <small className='con-form-message dark'>This field is required</small>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12 col-md-6">
+                                                <div className="con-form-group mb-4">
+                                                    <label htmlFor="phoneNumber" className='con-form-label dark is-required'>Phone No.</label>
+                                                    <InputMask id="phoneNumber" mask="(999) 999-9999" className='con-form-input dark' placeholder="Enter your phone number..."></InputMask>
+
+                                                    {showContactError &&
+                                                        <small className='con-form-message dark'>This field is required</small>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12">
+                                                <div className="con-form-group mb-4">
+                                                    <label htmlFor="message" className='con-form-label dark is-required'>Message</label>
+                                                    <InputTextarea value={message} className='con-form-input dark' onChange={(e) => setMessage(e.target.value)}
+                                                        placeholder='Enter the message...' rows={5} cols={30} />
+
+                                                    {showContactError &&
+                                                        <small className='con-form-message dark'>This field is required</small>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div className="col-12">
+                                                <div className="con-form-group mb-0 text-end">
+                                                    <Button label="SEND" type='submit' icon="pi pi-check" loading={contactLoading} onClick={sendMessage} className='ps-5 pe-5' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section>
 

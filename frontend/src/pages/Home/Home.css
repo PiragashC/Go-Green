@@ -4,7 +4,7 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
-    padding: 150px 100px;
+    padding: 150px 0 100px 0;
     display: flex;
     align-items: center;
 }
@@ -19,18 +19,18 @@
 }
 
 .hero-title {
-    font-size: 50px;
+    font-size: 40px;
     color: #000;
     font-weight: 700;
     display: block;
     position: relative;
     margin-bottom: 10px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .hero-sub-title {
     color: #1b6652;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 700;
     position: relative;
     margin-bottom: 20px;
@@ -461,6 +461,11 @@
     margin-bottom: 5px;
 }
 
+.con-form-label.dark {
+    color: #aecec5 !important;
+    font-weight: 400 !important;
+}
+
 .con-form-label.is-required::after {
     content: '*';
     color: red;
@@ -490,6 +495,20 @@
     font-weight: 300 !important;
 }
 
+.con-form-input.dark {
+    background-color: #1b6652 !important;
+    border-color: #1b6652 !important;
+    color: #cfe4de !important;
+}
+
+.con-form-input.dark:focus {
+    border-color: #73bf35 !important;
+}
+
+.con-form-input.dark::placeholder {
+    color: #84ada2 !important;
+}
+
 .con-form-date-input input {
     display: block;
     border-radius: 8px !important;
@@ -517,6 +536,10 @@
     color: red;
     margin-top: 5px;
     display: block;
+}
+
+.con-form-message.dark {
+    color: rgb(233, 102, 102);
 }
 
 .con-form-info-message {
@@ -561,6 +584,7 @@
 
 .p-fileupload .p-fileupload-content p {
     font-size: 15px !important;
+    color: #aebeb9;
 }
 
 .p-button {
@@ -628,4 +652,69 @@
 .p-datepicker:not(.p-datepicker-inline) {
     border: none !important;
     box-shadow: 0px 10px 15px #1b665236 !important;
+}
+
+.contact-container {
+    position: relative;
+    width: 100%;
+    border-radius: 40px;
+    padding: 30px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1040%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(27%2c 102%2c 82%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c869.511C162.159%2c870.227%2c212.983%2c631.09%2c352.937%2c549.181C502.708%2c461.527%2c721.703%2c512.975%2c834.514%2c381.11C950.917%2c245.047%2c988.672%2c36.903%2c938.163%2c-134.887C888.868%2c-302.547%2c714.138%2c-392.161%2c575.774%2c-498.911C462.276%2c-586.477%2c341.999%2c-656.101%2c205.567%2c-700.098C65.921%2c-745.132%2c-77.456%2c-781.191%2c-222.039%2c-756.194C-377.503%2c-729.316%2c-532.88%2c-670.427%2c-639.369%2c-554.016C-747.092%2c-436.256%2c-805.783%2c-275.699%2c-807.567%2c-116.111C-809.248%2c34.231%2c-734.228%2c172.556%2c-648.875%2c296.331C-573.789%2c405.218%2c-450.068%2c458.507%2c-350.939%2c546.072C-229.245%2c653.569%2c-162.371%2c868.794%2c0%2c869.511' fill='%231a614e'%3e%3c/path%3e%3cpath d='M1920 1698.9279999999999C2070.83 1740.569 2227.397 1843.039 2372.078 1783.4470000000001 2516.5 1723.961 2592.35 1556.348 2632.581 1405.425 2669.7129999999997 1266.129 2614.357 1125.532 2585.085 984.375 2557.71 852.365 2552.908 709.932 2466.8379999999997 606.163 2380.018 501.49 2248.619 440.40200000000004 2114.625 417.169 1988.587 395.31500000000005 1868.01 449.18100000000004 1744.071 480.841 1615.096 513.787 1466.591 511.298 1373.529 606.48 1279.214 702.944 1271.571 850.473 1252.146 983.977 1232.691 1117.689 1191.379 1265.128 1260.8310000000001 1381.032 1329.488 1495.609 1483.856 1513.42 1604.1689999999999 1571.443 1708.542 1621.779 1808.302 1668.0900000000001 1920 1698.9279999999999' fill='%231c6b56'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1040'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+}
+
+.contact-links-section {
+    margin-top: 40px;
+    position: relative;
+}
+
+.contact-link-area {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.contact-link-icon-area {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: #FFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 15px #134e3e;
+}
+
+.contact-link-icon-area i {
+    font-size: 20px;
+    color: #1b6652;
+}
+
+.contact-link {
+    color: #FFF;
+    text-decoration: none;
+    padding-top: 12px;
+    transition: ease 0.5s;
+    font-size: 15px;
+}
+
+.contact-link:hover {
+    color: #73bf35 !important;
+}
+
+.contact-form-section {
+    background-color: #134e3e;
+    position: relative;
+    padding: 30px;
+    border-radius: 20px;
+    height: 100%;
+}
+
+.hero-card {
+    border-radius: 30px;
+    background-color: #FFF;
+    height: 300px;
 }

@@ -160,7 +160,7 @@ code {
 
 .nav-link-button:focus {
   outline: none;
-  box-shadow: 0px 0px 0px 4px #d1278733 !important;
+  box-shadow: 0px 0px 0px 4px #ffffff3d !important;
 }
 
 .nav-section.scrolled .nav-link-button.with-bg {
@@ -229,7 +229,7 @@ code {
 }
 
 .nav-section.scrolled .menu-toggle-btn-area .menu-toggle-button {
-  color: #222057;
+  color: #1b6652;
 }
 
 .menu-toggle-btn-area {
@@ -289,14 +289,14 @@ section {
 
 .footer-section {
   position: relative;
-  padding-top: 100px;
+  padding: 200px 0;
 }
 
 .footer-bg-img {
-  /* position: absolute;
+  position: absolute;
   z-index: 0;
   left: 0;
-  bottom: 0; */
+  bottom: 0;
 }
 
 ::-webkit-scrollbar {
@@ -355,6 +355,29 @@ section {
   height: 2rem !important;
 }
 
-.p-datepicker table td{
+.p-datepicker table td {
   padding: 5px;
+}
+
+.footer-logo-link {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.footer-logo-link img {
+  width: 140px;
+}
+
+.footer-para {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 20px;
+  text-align: center;
+  z-index: 1;
+  display: block;
+  position: relative;
 }

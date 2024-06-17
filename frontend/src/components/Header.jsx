@@ -49,19 +49,19 @@ const Header = () => {
                                     </a>
                                     <ul className="nav-link-area">
                                         <li className='nav-link-item'>
-                                            <a href="#about-us" className={`nav-link ${window.location.pathname === '/about-us' ? 'active' : ''}`}>
+                                            <a href="#about-us" className="nav-link">
                                                 About
                                             </a>
                                         </li>
 
                                         <li className='nav-link-item'>
-                                            <a href="#contribute" className={`nav-link ${window.location.pathname === '/services' ? 'active' : ''}`}>
+                                            <a href="#contribute" className="nav-link">
                                                 Contribute
                                             </a>
                                         </li>
 
                                         <li className='nav-link-item'>
-                                            <a href="#contact-us" className={`nav-link ${window.location.pathname === '/contact-us' ? 'active' : ''}`}>
+                                            <a href="#contact" className="nav-link">
                                                 Contact
                                             </a>
                                         </li>
