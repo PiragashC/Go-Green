@@ -421,7 +421,7 @@
 .contribute-form-sub-area {
     width: 100%;
     border-radius: 20px;
-    background-color: #e2f7e4;
+    background-color: #d9eedb;
     padding: 20px;
     margin-bottom: 20px;
 }
@@ -519,6 +519,16 @@
     display: block;
 }
 
+.con-form-info-message {
+    font-size: 12px;
+    color: rgb(170, 170, 170);
+    margin-top: 5px;
+    display: block;
+    background-color: #ffffffa1;
+    border-radius: 6px;
+    padding: 5px 10px;
+}
+
 .con-form-group .con-form-date-input {
     width: 100%;
 }
@@ -529,4 +539,93 @@
 
 .p-datepicker {
     border-radius: 10px !important;
+}
+
+.p-fileupload .p-fileupload-buttonbar {
+    border-top-right-radius: 8px !important;
+    border-top-left-radius: 8px !important;
+    border: none;
+}
+
+.p-fileupload {
+    border-radius: 8px !important;
+    box-shadow: 0px 2px 10px rgba(27, 102, 82, 0.062);
+}
+
+.p-fileupload .p-fileupload-content {
+    border-bottom-right-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+    border: none;
+}
+
+
+.p-fileupload .p-fileupload-content p {
+    font-size: 15px !important;
+}
+
+.p-button {
+    font-size: 15px !important;
+    border-radius: 8px !important;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px !important
+}
+
+.p-message {
+    font-size: 13px !important;
+}
+
+.p-fileupload-row {
+    font-size: 14px !important;
+}
+
+.p-fileupload .p-fileupload-content {
+    padding: 1rem !important;
+}
+
+.p-message .p-message-wrapper {
+    padding: 0.6rem 1.5rem !important;
+}
+
+.p-fileupload-buttonbar .p-button.p-fileupload-upload {
+    display: none;
+}
+
+.p-dropdown {
+    background: #ffffff;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    outline-color: transparent;
+    border-radius: 8px !important;
+    width: 100% !important;
+    color: #000;
+    font-size: 15px !important;
+    padding: 10px 15px;
+    border: 1px solid #FFF !important;
+    box-shadow: 0px 2px 10px rgba(27, 102, 82, 0.062);
+    transition: ease 0.5s !important;
+    font-size: 15px !important;
+}
+
+.p-dropdown-label {
+    padding: 0 !important;
+    font-size: 15px !important;
+}
+
+.p-dropdown-items {
+    padding: 0;
+    font-size: 14px !important;
+}
+
+.p-dropdown-panel {
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0px 10px 15px #1b665236;
+    overflow: hidden;
+    margin-top: 2px;
+}
+
+.p-datepicker:not(.p-datepicker-inline) {
+    border: none !important;
+    box-shadow: 0px 10px 15px #1b665236 !important;
 }

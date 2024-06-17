@@ -5,10 +5,33 @@ import Footer from '../../components/Footer';
 import Typed from 'typed.js';
 import { InputText } from "primereact/inputtext";
 import { Calendar } from 'primereact/calendar';
+import { FileUpload } from 'primereact/fileupload';
+import { Dropdown } from 'primereact/dropdown';
+import { Button } from 'primereact/button';
 
 const Home = () => {
     const typedElement = useRef(null);
     const [issuedDate, setIssuedDate] = useState(null);
+    const [date, setDate] = useState(null);
+    const [selectedPlantCondition, setSelectedPlantCondition] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const load = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+    };
+
+    const plant_conditions = [
+        { name: 'Healthy' },
+        { name: 'Thriving' },
+        { name: 'Growing Steadily' },
+        { name: 'Needs Water' },
+        { name: 'Needs Sunlight' },
+        { name: 'Needs Fertilizer' }
+    ];
 
     useEffect(() => {
         const sentense = {
@@ -225,6 +248,7 @@ const Home = () => {
                     </p>
 
                     <div className="contribute-form-area">
+                        <h3 className='form-head'>Enter the details below</h3>
                         <div className="contribute-form-sub-area">
                             <h6 className='contribute-form--title'>Beneficiary Details</h6>
                             <div className="row mt-4">
@@ -285,23 +309,45 @@ const Home = () => {
                             <h6 className='contribute-form--title'>Progress & Maintenance</h6>
                             <div className="row mt-4">
                                 <div className="col-12 col-md-6 col-lg-4">
-                                    <div className="con-form-group mb-4 mb-md-0">
-                                        <label htmlFor="plant_name" className='con-form-label is-required'>Plant Name</label>
-                                        <InputText id="plant_name" className='con-form-input'
-                                            placeholder='Enter the plant name...' />
-                                        <small className='con-form-message'>This field is required</small>
-                                    </div>
-                                </div>
-
-                                <div className="col-12 col-md-6 col-lg-4">
                                     <div className="con-form-group mb-4 mb-lg-0">
-                                        <label htmlFor="issued_date" className='con-form-label is-required'>Issued Date</label>
-                                        <Calendar id="issued_date" value={issuedDate} className='con-form-date-input' onChange={(e) => setIssuedDate(e.value)} dateFormat="dd/mm/yy"
+                                        <label htmlFor="issued_date" className='con-form-label is-required'>Date</label>
+                                        <Calendar id="issued_date" value={date} className='con-form-date-input' onChange={(e) => setDate(e.value)} dateFormat="dd/mm/yy"
                                             placeholder='DD/MM/YYYY' />
                                         <small className='con-form-message'>This field is required</small>
                                     </div>
                                 </div>
 
+                                <div className="col-12 col-md-6 col-lg-8">
+                                    <div className="con-form-group mb-4">
+                                        <label htmlFor="plant_name" className='con-form-label is-required'>Progress and Maintenance</label>
+                                        <InputText id="plant_name" className='con-form-input'
+                                            placeholder='Enter the Progress and Maintenance...' />
+                                        <small className='con-form-message'>This field is required</small>
+                                    </div>
+                                </div>
+
+                                <div className="col-12">
+                                    <div className="con-form-group mb-4">
+                                        <label htmlFor="plant_name" className='con-form-label is-required'>Attach Photo</label>
+                                        <FileUpload name="demo[]" url={'/api/upload'} accept="image/*" mode='advanced' maxFileSize={1000000} emptyTemplate={<p className="m-0">Drag and drop files to here to upload.</p>} />
+                                        <small className='con-form-info-message'>Max file size : 1 MB</small>
+                                        <small className='con-form-message'>This field is required</small>
+                                    </div>
+                                </div>
+
+                                <div className="col-12 col-md-6 col-lg-4">
+                                    <div className="con-form-group">
+                                        <label htmlFor="plant_name" className='con-form-label is-required'>Plant Condition</label>
+                                        <Dropdown value={selectedPlantCondition} onChange={(e) => setSelectedPlantCondition(e.value)} options={plant_conditions} optionLabel="name"
+                                            placeholder="Select the plant condition" className="w-full w-100" />
+                                        <small className='con-form-message'>This field is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-12 text-end">
+                                <Button label="Submit" icon="pi pi-check" loading={loading} onClick={load} className='ps-5 pe-5' />
                             </div>
                         </div>
                     </div>
