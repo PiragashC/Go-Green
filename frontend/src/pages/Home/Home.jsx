@@ -187,7 +187,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className='section-padding overflow-hidden vision-section'>
+            <section className='section-padding overflow-hidden vision-section' >
                 <div className="container-md">
                     <div className="row vis-mis-area">
                         <div className="col-12 col-md-6" data-aos="fade-up-right">
@@ -217,7 +217,7 @@ const Home = () => {
                 <img src="assets/images/leafs/leaf (2).svg" className='section-leaf-dec-img leaf-2' alt="" />
             </section>
 
-            <section className='section-padding overflow-hidden'>
+            <section className='section-padding overflow-hidden' id='contribute'>
                 <div className="container-md">
                     <h4 className="section-heading center-heading" data-aos="fade-down">Make Your Contribution</h4>
                     <p className='section-para text-center' data-aos="fade-up">
