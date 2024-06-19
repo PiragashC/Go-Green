@@ -10,6 +10,10 @@ import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import { InputTextarea } from "primereact/inputtextarea";
 import { InputMask } from "primereact/inputmask";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const Home = () => {
     const typedElement = useRef(null);
@@ -18,7 +22,7 @@ const Home = () => {
     const [selectedPlantCondition, setSelectedPlantCondition] = useState(null);
     const [loading, setLoading] = useState(false);
     const [showError, setshowError] = useState(false);
-    
+
     const [contactLoading, setContactLoading] = useState(false);
     const [showContactError, setshowContactError] = useState(false);
     const [message, setMessage] = useState('');
@@ -73,6 +77,24 @@ const Home = () => {
             typed.destroy();
         };
     }, []);
+
+    const breakpoints = {
+        320: {
+            slidesPerView: 1,
+        },
+        480: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        991: {
+            slidesPerView: 3,
+        },
+        1200: {
+            slidesPerView: 3,
+        }
+    };
     return (
         <>
             <Header />
@@ -98,19 +120,104 @@ const Home = () => {
                             <h3 className='hero-sub-title animate__animated animate__fadeInUp'>Be a Part of the Change - Every Action Counts</h3>
                             <p className='hero-para animate__animated animate__fadeIn animate__slow'>Welcome to Go Green, a community dedicated to making our world a better, greener place. By joining us, you can contribute to meaningful environmental projects, connect with like-minded individuals, and take actionable steps towards sustainability. Sign up today to create an account, log in, and fill out a simple form to start making a difference. Together, we can turn the tide and create a healthier planet for future generations.</p>
 
-                            {/* <div className="row mt-4">
-                                <div className="col-12 col-md-4">
-                                    <article className='hero-card'></article>
-                                </div>
+                            <div className="hero-slider-area">
+                                <Swiper
+                                    modules={[Navigation, Autoplay]}
+                                    spaceBetween={20}
+                                    slidesPerView={3}
+                                    loop={true}
+                                    speed={1500}
+                                    navigation={{
+                                        nextEl: '.swiper-next-button',
+                                        prevEl: '.swiper-prev-button',
+                                    }}
+                                    grabCursor={true}
+                                    breakpoints={breakpoints}
+                                    onSlideChange={() => console.log('slide change')}
+                                    onSwiper={(swiper) => console.log(swiper)}
+                                    autoplay={{
+                                        delay: 5000,
+                                        waitForTransition: true,
+                                        disableOnInteraction: false,
+                                    }}
 
-                                <div className="col-12 col-md-4">
-                                    <article className='hero-card'></article>
-                                </div>
+                                >
+                                    <SwiperSlide>
+                                        <article className='hero-card'>
+                                            <h5 className='hero-card-title'>
+                                                Plant a Tree,
+                                                Grow a Future
+                                            </h5>
+                                            <p className='hero-card-desc'>
+                                                Join our reforestation efforts by planting trees in your community. Each tree planted helps combat climate change and restores natural habitats. Together, we can create a greener, healthier planet.
+                                            </p>
+                                        </article>
+                                    </SwiperSlide>
 
-                                <div className="col-12 col-md-4">
-                                    <article className='hero-card'></article>
-                                </div>
-                            </div> */}
+                                    <SwiperSlide>
+                                        <article className='hero-card'>
+                                            <h5 className='hero-card-title'>
+                                                Reduce, Reuse, Recycle
+                                            </h5>
+                                            <p className='hero-card-desc'>
+                                                Adopt sustainable habits by reducing waste, reusing materials, and recycling. Small changes in your daily routine can lead to a significant positive impact on the environment.
+                                            </p>
+                                        </article>
+                                    </SwiperSlide>
+
+                                    <SwiperSlide>
+                                        <article className='hero-card'>
+                                            <h5 className='hero-card-title'>
+                                                Support Renewable Energy
+                                            </h5>
+                                            <p className='hero-card-desc'>
+                                                Transition to renewable energy sources like solar and wind. By supporting green energy, you contribute to reducing greenhouse gas emissions and promoting a sustainable future.
+                                            </p>
+                                        </article>
+                                    </SwiperSlide>
+
+
+                                    <SwiperSlide>
+                                        <article className='hero-card'>
+                                            <h5 className='hero-card-title'>
+                                                Join a Clean-Up Drive
+                                            </h5>
+                                            <p className='hero-card-desc'>
+                                                Participate in local clean-up events to keep our environment clean and pollution-free. Your efforts help protect wildlife and maintain beautiful natural spaces for everyone to enjoy.
+                                            </p>
+                                        </article>
+                                    </SwiperSlide>
+
+
+                                    <SwiperSlide>
+                                        <article className='hero-card'>
+                                            <h5 className='hero-card-title'>
+                                                Educate and Inspire
+                                            </h5>
+                                            <p className='hero-card-desc'>
+                                                Attend or host workshops to spread awareness about environmental issues and sustainable living practices. Education is key to inspiring others to join the green movement.
+                                            </p>
+                                        </article>
+                                    </SwiperSlide>
+
+
+                                    <SwiperSlide>
+                                        <article className='hero-card'>
+                                            <h5 className='hero-card-title'>
+                                                Volunteer for Change
+                                            </h5>
+                                            <p className='hero-card-desc'>
+                                                Offer your time and skills to support various environmental projects. Volunteering is a powerful way to make a tangible difference and connect with a community of like-minded individuals.
+                                            </p>
+                                        </article>
+                                    </SwiperSlide>
+                                    <div className="swiper-btn-area">
+                                        <button className='swiper-prev-button'>&#8592;</button>
+                                        <button className='swiper-next-button'>&#8594;</button>
+                                    </div>
+                                </Swiper>
+                            </div>
+
                         </div>
                     </div>
                 </div>
